@@ -13,6 +13,7 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { ProgressComponent } from './pages/progress/progress.component';
 import { Grafica1Component } from './pages/grafica1/grafica1.component';
 import { AppRoutingModule } from './app-routing.module';
+import { PagesComponent } from './pages/pages.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AppRoutingModule } from './app-routing.module';
     HeaderComponent,
     SidebarComponent,
     ProgressComponent,
-    Grafica1Component
+    Grafica1Component,
+    PagesComponent
   ],
   imports: [
     BrowserModule,
