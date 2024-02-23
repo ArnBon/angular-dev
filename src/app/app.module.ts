@@ -6,7 +6,7 @@ import { PagesModule } from './pages/pages.module';
 
 import { AppComponent } from './app.component';
 
-import { NoPageFoundComponent } from './pages/no-page-found/no-page-found.component';
+import { NoPageFoundComponent } from './no-page-found/no-page-found.component';
 import { AuthModule } from './auth/auth.module';
 
 @NgModule({
