@@ -7,7 +7,7 @@
                 <div class="progress m-t-20">
                     <div class="progress-bar bg-primary progress-bar-striped active"
                         style="height:5px;"
-                        [style.width]="getProgreso1"
+                        [style.width]="getPorcentaje"
                          role="progressbar">
                         </div>
                 </div>
@@ -15,7 +15,7 @@
                 <div class="progress m-t-20">
                     <div class="progress-bar bg-info progress-bar-striped active"
                          style="height:5px;"
-                         [style.width]="getProgreso2"
+                         [style.width]="getPorcentaje"
                          role="progressbar">
                         </div>
                 </div>
@@ -35,11 +35,20 @@
                 </app-incrementador> -->
                 <div class="input-group">
                     <span class="input-group-btn">
-                      <button class="btn btn-primary" type="button"><i class="fa fa-minus"></i></button>
+                      <button class="btn btn-primary"
+                       (click)="cambiarValor(-5)"
+                       type="button">
+                       <i class="fa fa-minus"></i></button>
                     </span>
-                    <input type="text" class="form-control" placeholder="Product name">
+                    <input type="number"
+                     class="form-control"
+                      placeholder="Progreso"
+                      [(ngModel)]="progreso">
                     <span class="input-group-btn">
-                      <button class="btn btn-success" type="button"><i class="fa fa-plus"></i></button>
+                      <button class="btn btn-success"
+                      (click)="cambiarValor(5)"
+                       type="button">
+                       <i class="fa fa-plus"></i></button>
                     </span>
                 </div>
             </div>
