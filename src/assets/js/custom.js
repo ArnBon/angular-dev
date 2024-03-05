@@ -82,9 +82,9 @@ $(function() {
     }).trigger('blur');
 
     // ==============================================================
-    // Auto select left navbar
+    // Auto select left navbar comendato 04-03-2024 por arnaldo bonillo
     // ==============================================================
-    $(function() {
+   /* $(function() {
         var url = window.location;
         var element = $('ul#sidebarnav a').filter(function() {
             return this.href == url;
@@ -97,7 +97,7 @@ $(function() {
             }
         }
 
-    });
+    });*/
     // ==============================================================
     //tooltip
     // ==============================================================
