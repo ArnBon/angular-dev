@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { RegisterForm } from '../interfaces/register-form.interface';
+import { LoginForm } from '../interfaces/login-form.interface';
 import { environment } from 'src/environments/environment';
 
 
@@ -16,5 +17,14 @@ export class UsuarioService {
   crearUsuario(formData: RegisterForm){
     // console.log('creando usuario');
     return this.http.post(`${base_url}/usuarios`, formData);
+  }
+
+
+  login( formData: LoginForm ) {
+
+    return this.http.post(`${ base_url }/login`, formData )
+
+
+
   }
 }
