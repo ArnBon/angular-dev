@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit, AfterViewInit{
   @ViewChild('googleBtn') googleBtn: ElementRef;
 
   public formSubmitted = false; //clase 167
+  public auth2: any;
 
   public loginForm = this.fb.group({
     email:     [ localStorage.getItem('email') || '',    [Validators.required, Validators.email] ], // agregado clase 167 Validators.email
@@ -26,8 +27,8 @@ export class LoginComponent implements OnInit, AfterViewInit{
 
   constructor(private router: Router,
               private fb: FormBuilder,
-              private usuarioService:UsuarioService
-  ) { }
+              private usuarioService:UsuarioService,
+               private ngZone: NgZone) { }
 
   ngOnInit(): void {
 
@@ -82,6 +83,24 @@ export class LoginComponent implements OnInit, AfterViewInit{
     }, (err) => {
       Swal.fire('Error', err.error.msg, 'error');
     });
+  }
+
+
+    attachSignin(element) {
+
+    this.auth2.attachClickHandler( element, {},
+        (googleUser) => {
+            const id_token = googleUser.getAuthResponse().id_token;
+            // console.log(id_token);
+            this.usuarioService.loginGoogle( id_token )
+              .subscribe( resp => {
+                // Navegar al Dashboard
+                  this.router.navigateByUrl('/');
+              });
+
+        }, (error) => {
+            alert(JSON.stringify(error, undefined, 2));
+        });
   }
 
   logout() {
