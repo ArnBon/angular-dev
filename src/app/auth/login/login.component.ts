@@ -40,7 +40,8 @@ export class LoginComponent implements OnInit, AfterViewInit{
   googleInit(){
     google.accounts.id.initialize({
                  client_id: '8589823097-updhvjj16j3d1jucp8jd1j0j7dbkgi43.apps.googleusercontent.com',
-                 callback: this.handleCredentialResponse
+                //  callback: this.handleCredentialResponse
+                callback: (response: any) => this.handleCredentialResponse(response) //clase 177
              });
 
              google.accounts.id.renderButton(
@@ -53,7 +54,13 @@ export class LoginComponent implements OnInit, AfterViewInit{
   }
 
   handleCredentialResponse(response: any){
-    console.log("Encoded JWT ID token: " + response.credential);
+    // console.log({esto: this});
+    // console.log("Encoded JWT ID token: " + response.credential);
+    this.usuarioService.loginGoogle(response.credential)
+    .subscribe(resp => {
+      // console.log({login: resp}); //para pruebas
+      this.router.navigateByUrl('/');
+    })
   }
 
   login(){
@@ -68,6 +75,10 @@ export class LoginComponent implements OnInit, AfterViewInit{
       } else {
         localStorage.removeItem('email');
       }
+
+      //Navegar al dashboard
+      this.router.navigateByUrl('/');
+
     }, (err) => {
       Swal.fire('Error', err.error.msg, 'error');
     });
