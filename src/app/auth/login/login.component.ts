@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, NgZone } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone, AfterViewInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -14,7 +14,7 @@ declare const gapi: any;
 })
 export class LoginComponent implements OnInit, AfterViewInit{
 
-  @ViewChild('googleBtn') googleBtn: ElementRef;
+  @ViewChild('googleBtn') googleBtn!: ElementRef;
 
   public formSubmitted = false; //clase 167
   public auth2: any;
@@ -45,13 +45,13 @@ export class LoginComponent implements OnInit, AfterViewInit{
   googleInit(){
     google.accounts.id.initialize({
                  client_id: '8589823097-updhvjj16j3d1jucp8jd1j0j7dbkgi43.apps.googleusercontent.com',
-                //  callback: this.handleCredentialResponse
-                callback: (response: any) => this.handleCredentialResponse(response) //clase 177
+                 callback: this.handleCredentialResponse
+                // callback: (response: any) => this.handleCredentialResponse(response) //clase 177
              });
 
              google.accounts.id.renderButton(
-                //  document.getElementById("buttonDiv"),
-                this.googleBtn.nativeElement,
+                 document.getElementById("buttonDiv"),
+                // this.googleBtn.nativeElement,
                  {   theme: "outline",
                      size: "large"
                  } // customization attributes
@@ -107,8 +107,31 @@ export class LoginComponent implements OnInit, AfterViewInit{
 
   //
 
+  // logout() {
+  //   this.router.navigateByUrl('/');
+  // }
 
-  //   attachSignin(element) {
+   async startApp() {
+
+    await this.usuarioService.googleInit();
+    this.auth2 = this.usuarioService.auth2;
+    this.attachSignin( document.getElementById('my-signin2') );
+  };
+
+  // startApp() {
+  //   gapi.load('auth2', () => {
+
+  //     this.auth2 = gapi.auth2.init({
+  //       client_id: '8589823097-updhvjj16j3d1jucp8jd1j0j7dbkgi43.apps.googleusercontent.com',
+  //       cookiepolicy: 'single_host_origin',
+  //     });
+  //     this.attachSignin(document.getElementById('my-signin2'));
+  //   });
+  // }
+
+
+//
+    //   attachSignin(element) {
 
   //   this.auth2.attachClickHandler( element, {},
   //       (googleUser) => {
@@ -145,28 +168,5 @@ export class LoginComponent implements OnInit, AfterViewInit{
         });
   }
 
-  logout() {
-    this.router.navigateByUrl('/');
-  }
-
-  //  async startApp() {
-
-  //   await this.usuarioService.googleInit();
-  //   this.auth2 = this.usuarioService.auth2;
-
-  //   this.attachSignin( document.getElementById('my-signin2') );
-
-  // };
-
-  startApp() {
-    gapi.load('auth2', () => {
-
-      this.auth2 = gapi.auth2.init({
-        client_id: '8589823097-updhvjj16j3d1jucp8jd1j0j7dbkgi43.apps.googleusercontent.com',
-        cookiepolicy: 'single_host_origin',
-      });
-      this.attachSignin(document.getElementById('my-signin2'));
-    });
-  }
 
 }
