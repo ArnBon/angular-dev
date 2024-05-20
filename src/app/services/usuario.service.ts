@@ -7,6 +7,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { rejects } from 'assert';
+import { Usuario } from '../models/usuario.model';
 
 
 // declare const google: any;
@@ -19,6 +20,7 @@ const base_url = environment.base_url;
 export class UsuarioService {
 
   public auth2: any;
+  public usuarios: Usuario;
 
   constructor(private http: HttpClient,
               private router: Router,
@@ -73,7 +75,8 @@ logout() {
 
     //con esta validacion no entra si no esta autenticado
     validarToken(): Observable<boolean> {
-    const token = localStorage.getItem('token') || '';
+
+      const token = localStorage.getItem('token') || '';
 
     return this.http.get(`${ base_url }/login/renew`, {
       headers: {
@@ -81,6 +84,7 @@ logout() {
       }
     }).pipe(
       tap( (resp: any) => {
+        console.log(resp);
         localStorage.setItem('token', resp.token );
       }),
       map( resp => true),
