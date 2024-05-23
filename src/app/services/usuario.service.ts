@@ -113,7 +113,7 @@ logout() {
                     console.log(resp)
                     localStorage.setItem('token', resp.token )
                   })
-                );
+                ); 
 
   }
 

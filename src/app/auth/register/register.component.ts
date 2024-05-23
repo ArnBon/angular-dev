@@ -14,13 +14,13 @@ export class RegisterComponent  {
   public formSubmitted = false; //clase 167
 
   public registerForm = this.fb.group({
-    nombre:    ['test',    Validators.required],
-    email:     ['',    Validators.required, Validators.email], // agregado clase 167 Validators.email
+    nombre:    ['',    Validators.required],
+    email:     ['',    [Validators.required, Validators.email] ], // agregado clase 167 Validators.email
     password:  ['',    Validators.required],
     password2: ['',    Validators.required],
     terminos:  [false, Validators.required],
   }, {
-    asyncValidators: this.passwordsIguales('password', 'password2'),
+    validators: this.passwordsIguales('password', 'password2')
   });
 
   constructor(private fb: FormBuilder,
@@ -28,17 +28,17 @@ export class RegisterComponent  {
     private router: Router
   ) { }
 
-   crearUsuarios() {
-    this.formSubmitted = true;
-    console.log(this.registerForm);
+  //  crearUsuarios() {
+  //   this.formSubmitted = true;
+  //   console.log(this.registerForm);
 
-    if (this.registerForm.valid) {
-      console.log('posteando formulario');
-    } else {
-      console.log('Formulario no es correcto...');
-    }
+  //   if (this.registerForm.valid) {
+  //     console.log('posteando formulario');
+  //   } else {
+  //     console.log('Formulario no es correcto...');
+  //   }
 
-  }
+  // }
 
   // crearUsuarios(){
 
@@ -72,7 +72,7 @@ export class RegisterComponent  {
   // }
 
   //clase 170
-  /*crearUsuarios(){
+  crearUsuarios(){
     this.formSubmitted = true; //clase 167
     console.log(this.registerForm.value);
     if (this.registerForm.invalid) {
@@ -92,7 +92,7 @@ export class RegisterComponent  {
     //console.warn(err.error.msg));
   });
 
-}*/
+}
 
   campoNoValido( campo: string ): boolean { //clase 167
   //debugger
