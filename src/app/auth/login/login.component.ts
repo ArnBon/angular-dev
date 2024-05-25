@@ -14,7 +14,7 @@ declare const gapi: any;
 })
 export class LoginComponent implements OnInit, AfterViewInit{
 
-  @ViewChild('googleBtn') googleBtn!: ElementRef;
+  @ViewChild('googleBtn') googleBtn: ElementRef;
 
   public formSubmitted = false; //clase 167
   public auth2: any;
@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit, AfterViewInit{
   }
 
   ngAfterViewInit(): void {
-    this.googleInit
+    this.googleInit();
   }
 
   googleInit(){
@@ -60,10 +60,10 @@ export class LoginComponent implements OnInit, AfterViewInit{
 
   handleCredentialResponse(response: any){
     // console.log({esto: this});
-    // console.log("Encoded JWT ID token: " + response.credential);
+     console.log("Encoded JWT ID token: " + response.credential);
     this.usuarioService.loginGoogle(response.credential)
     .subscribe(resp => {
-      // console.log({login: resp}); //para pruebas
+      //  console.log({login: resp}); //para pruebas
       this.router.navigateByUrl('/');
     })
   }
