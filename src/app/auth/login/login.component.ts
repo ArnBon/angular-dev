@@ -83,7 +83,7 @@ export class LoginComponent implements OnInit, AfterViewInit{
   login(){
     // this.router.navigateByUrl('/')
      console.log(this.loginForm.value);
-   debugger
+   //debugger
     this.usuarioService.login(this.loginForm.value)
     .subscribe(resp => {
       console.log(resp)
@@ -95,7 +95,7 @@ export class LoginComponent implements OnInit, AfterViewInit{
       }
 
       //Navegar al dashboard
-      debugger
+      //debugger
       this.router.navigate(['/']);
 
     }, (err) => {
