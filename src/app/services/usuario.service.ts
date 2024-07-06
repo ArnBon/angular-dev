@@ -113,11 +113,11 @@ logout() {
                     console.log(resp)
                     localStorage.setItem('token', resp.token )
                   })
-                ); 
+                );
 
   }
 
-  loginGoogle( token ) {
+  loginGoogle( token: string ) {
 
     return this.http.post(`${ base_url }/login/google`, { token } )
                 .pipe(
