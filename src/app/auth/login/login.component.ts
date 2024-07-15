@@ -124,7 +124,7 @@ export class LoginComponent implements OnInit, AfterViewInit{
   // logout() {
   //   this.router.navigateByUrl('/');
   // }
-
+//me di cuenta en la clase 179 esta mal construida la seccion 14
    async startApp() {
 
     await this.usuarioService.googleInit();
