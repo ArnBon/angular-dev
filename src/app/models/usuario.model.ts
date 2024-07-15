@@ -10,5 +10,10 @@ export class Usuario {
         public uid?: string,
     ) {}
 
+    //clase 186
+    imprimirUsuario(){
+      console.log(this.nombre);
+    }
+
 
 }

@@ -20,7 +20,7 @@ const base_url = environment.base_url;
 export class UsuarioService {
 
   public auth2: any;
-  public usuarios: Usuario;
+  public usuarios: Usuario; // clase 186
 
   constructor(private http: HttpClient,
               private router: Router,
@@ -85,6 +85,11 @@ logout() {
     }).pipe(
       tap( (resp: any) => {
         console.log(resp);
+        const { email, google, nombre, role, img, uid } = resp.usuario;
+        this.usuarios = new Usuario(nombre, email, '', img, google, role, uid );
+
+        //this.usuarios = resp.usuario; //clase 186
+        this.usuarios.imprimirUsuario(); //clase 186
         localStorage.setItem('token', resp.token );
       }),
       map( resp => true),
@@ -113,7 +118,7 @@ logout() {
                     console.log(resp)
                     localStorage.setItem('token', resp.token )
                   })
-                ); 
+                );
 
   }
 
