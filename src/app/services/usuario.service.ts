@@ -38,8 +38,11 @@ export class UsuarioService {
   //   });
   // }
 
+
   //codigo del video 180 que sustituye al codigo del video 179
-   googleInit() {
+
+
+  googleInit() {
 
     return new Promise<void>(( resolve, reject) => {
       gapi.load('auth2', () => {
@@ -85,6 +88,15 @@ logout() {
     }).pipe(
       tap( (resp: any) => {
         console.log(resp);
+
+
+        const { email, google, nombre, role, img, uid } = resp.usuario;
+        this.usuarios = new Usuario(nombre, email, '', img, google, role, uid );
+
+        this.usuarios = resp.usuario; //clase 186
+        //this.usuarios.imprimirUsuario(); //clase 186
+
+
         localStorage.setItem('token', resp.token );
       }),
       map( resp => true),
