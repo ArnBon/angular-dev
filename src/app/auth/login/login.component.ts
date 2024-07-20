@@ -14,7 +14,7 @@ declare const gapi: any;
 })
 export class LoginComponent implements OnInit, AfterViewInit{
 
-  @ViewChild('googleBtn') googleBtn: ElementRef;
+  @ViewChild('googleBtn') googleBtn: ElementRef | undefined;
 
   public formSubmitted = false; //clase 167
   public auth2: any;
@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit, AfterViewInit{
     email:     [ localStorage.getItem('email') || '',    [Validators.required, Validators.email] ], // agregado clase 167 Validators.email
     password:  ['',    Validators.required],
     remember: [false]
+
   }, {
   });
 
@@ -35,30 +36,29 @@ export class LoginComponent implements OnInit, AfterViewInit{
                 }
 
   ngOnInit(): void {
-    this.renderButton();
+    // this.renderButton();
+    this.googleInit();
   }
 
   ngAfterViewInit(): void {
-    this.googleInit();
+     this.googleInit();
   }
 
   googleInit(){
     google.accounts.id.initialize({
-                 client_id: '8589823097-updhvjj16j3d1jucp8jd1j0j7dbkgi43.apps.googleusercontent.com',
-                 callback: this.handleCredentialResponse
-                // callback: (response: any) => this.handleCredentialResponse(response) //clase 177
-             });
-
-             google.accounts.id.renderButton(
-                 document.getElementById("buttonDiv"),
-                // this.googleBtn.nativeElement,
-                 {   theme: "outline",
-                     size: "large"
-                 } // customization attributes
-             );
+      client_id: '8589823097-updhvjj16j3d1jucp8jd1j0j7dbkgi43.apps.googleusercontent.com',
+      // callback: this.handleCredentialResponse
+    callback: (response: any) => this.handleCredentialResponse(response) //clase 177
+  });
+    google.accounts.id.renderButton(
+        //document.getElementById("buttonDiv"),
+       this.googleBtn?.nativeElement,
+        {   theme: "outline", size: "large"
+        } // customization attributes
+    );
   }
 
-  handleCredentialResponse(response: any){
+  /*handleCredentialResponse(response: any){
     // console.log({esto: this});
      console.log("Encoded JWT ID token: " + response.credential);
     this.usuarioService.loginGoogle(response.credential)
@@ -66,15 +66,28 @@ export class LoginComponent implements OnInit, AfterViewInit{
       //  console.log({login: resp}); //para pruebas
       this.router.navigateByUrl('/');
     })
-  }
+  }*/
+
+    handleCredentialResponse(response: any){
+      // console.log("Encoded JWT ID token: " + response.credential);
+      this.usuarioService.loginGoogle(response.credential)
+    .subscribe((resp) => {
+      this.ngZone.run( () => {
+        console.log({login: resp});
+       this.router.navigateByUrl('/');
+      });
+    });
+    }
+
 
   login(){
     // this.router.navigateByUrl('/')
-    // console.log(this.loginForm.value);
-
+     console.log(this.loginForm.value);
+   //debugger
     this.usuarioService.login(this.loginForm.value)
     .subscribe(resp => {
       console.log(resp)
+
       if (this.loginForm.get('remember').value) {
         localStorage.setItem('email', this.loginForm.get('email').value);
       } else {
@@ -82,7 +95,8 @@ export class LoginComponent implements OnInit, AfterViewInit{
       }
 
       //Navegar al dashboard
-      this.router.navigateByUrl('/');
+      //debugger
+      this.router.navigate(['/']);
 
     }, (err) => {
       Swal.fire('Error', err.error.msg, 'error');
@@ -110,7 +124,7 @@ export class LoginComponent implements OnInit, AfterViewInit{
   // logout() {
   //   this.router.navigateByUrl('/');
   // }
-
+//me di cuenta en la clase 179 esta mal construida la seccion 14
    async startApp() {
 
     await this.usuarioService.googleInit();
