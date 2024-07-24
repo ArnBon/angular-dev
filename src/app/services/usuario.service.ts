@@ -89,7 +89,7 @@ logout() {
       tap( (resp: any) => {
         console.log(resp);
 
-
+debugger
         const { email, google, nombre, role, img, uid } = resp.usuario;
         this.usuarios = new Usuario(nombre, email, '', img, google, role, uid );
 
