@@ -23,7 +23,7 @@ export class Usuario {
 
 //clase 187
     get ImageUrl(){
-debugger
+//debugger
       if (this.img.includes('https')) {
         return this.img;
       }

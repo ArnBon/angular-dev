@@ -189,35 +189,19 @@
         <!-- Profile -->
         <!-- ============================================================== -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle waves-effect waves-dark" href="#" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            <!-- <img src="./assets/images/users/1.jpg" alt="user" -->
-            <img [src]="usuarios.ImageUrl" alt="user"
+          <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false"><img src="./assets/images/users/1.jpg" alt="user"
               class="profile-pic" /></a>
           <div class="dropdown-menu dropdown-menu-right animated fadeIn fast">
             <ul class="dropdown-user">
               <li>
                 <div class="dw-user-box">
-
-
-                  <!-- <div class="u-img"><img src="./assets/images/users/1.jpg" alt="user"></div> -->
-                   <div class="u-img"><img [src]="usuarios.ImageUrl" alt="user"></div>
+                  <div class="u-img"><img src="./assets/images/users/1.jpg" alt="user"></div>
                   <div class="u-text">
-
-
-                    <!-- <h4>Steave Jobs</h4> -->
-                    <h4>{{ usuarios.nombre }}</h4>
-
-                    <!-- <p class="text-muted">varun@gmail.com</p><a href="pages-profile.html"
-                      class="btn btn-rounded btn-danger btn-sm">View Profile</a> -->
-                    <p class="text-muted">
-                      {{ usuarios.email | slice:0:20 }}{{ (usuarios.email.length > 20) ? '...': '' }}</p>
-                    <a href="pages-profile.html"
-                    class="btn btn-rounded btn-danger btn-sm">View Profile</a>
-
-                    </div>
-
-
+                    <h4>Steave Jobs</h4>
+                    <p class="text-muted">varun@gmail.com</p><a href="pages-profile.html"
+                      class="btn btn-rounded btn-danger btn-sm">View Profile</a>
+                  </div>
                 </div>
               </li>
               <li role="separator" class="divider"></li>
@@ -227,11 +211,7 @@
               <li role="separator" class="divider"></li>
               <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
               <li role="separator" class="divider"></li>
-              <!-- <li><a (click)="logout()" class="cursor">
-                  <i class="fa fa-power-off"></i>
-                  Logout</a>
-              </li> -->
-              <li><a routerLink="/login" class="cursor">
+              <li><a (click)="logout()" class="cursor">
                   <i class="fa fa-power-off"></i>
                   Logout</a>
               </li>
