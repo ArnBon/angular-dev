@@ -20,7 +20,7 @@ const base_url = environment.base_url;
 export class UsuarioService {
 
   public auth2: any;
-  public usuarios: Usuario;
+  public usuario: Usuario;
 
   constructor(private http: HttpClient,
               private router: Router,
@@ -84,13 +84,19 @@ logout() {
       }
     }).pipe(
       tap( (resp: any) => {
-        console.log(resp);
+        //console.log(resp);
+
+        const{email,google,img,nombre,role,uid} = resp.usuario //ojo aqui
+
+        this.usuario = new Usuario( nombre, email, '', img, google, role, uid  )
+
+        this.usuario.imprimirUsuario();
         localStorage.setItem('token', resp.token );
       }),
       map( resp => true),
       catchError( error => of(false) )
     );
-
+//Nota: hay que crear la instancia si se quiere tener acceso a los metodos y propiedades de alguna clase
   }
 
   crearUsuario(formData: RegisterForm){
