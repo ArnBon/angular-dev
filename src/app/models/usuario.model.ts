@@ -18,7 +18,7 @@ export class Usuario {
 
     imprimirUsuario(){
       console.log(this.nombre);
-    }
+    } //esto borrarlo fue para fines demostrativos
 
     get imagenUrl(){
       //http://localhost:3000/api/upload/usuarios/no-image

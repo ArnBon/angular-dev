@@ -73,11 +73,9 @@ logout() {
 
   }
 
-    //con esta validacion no entra si no esta autenticado
-    validarToken(): Observable<boolean> {
 
+   /* validarToken(): Observable<boolean> {//con esta validacion no entra si no esta autenticado
       const token = localStorage.getItem('token') || '';
-
     return this.http.get(`${ base_url }/login/renew`, {
       headers: {
         'x-token': token
@@ -85,19 +83,39 @@ logout() {
     }).pipe(
       tap( (resp: any) => {
         //console.log(resp);
-
         const{email,google,img,nombre,role,uid} = resp.usuario //ojo aqui
-
         this.usuario = new Usuario( nombre, email, '', img, google, role, uid  )
-
         this.usuario.imprimirUsuario();
         localStorage.setItem('token', resp.token );
       }),
       map( resp => true),
       catchError( error => of(false) )
-    );
-//Nota: hay que crear la instancia si se quiere tener acceso a los metodos y propiedades de alguna clase
+    );//Nota: hay que crear la instancia si se quiere tener acceso a los metodos y propiedades de alguna clase
+  }*/
+
+    /**clase 188 */
+     validarToken(): Observable<boolean> {//con esta validacion no entra si no esta autenticado
+      const token = localStorage.getItem('token') || '';
+    return this.http.get(`${ base_url }/login/renew`, {
+      headers: {
+        'x-token': token
+      }
+    }).pipe(
+      map( (resp: any) => {
+        //console.log(resp);
+        const{email,google,img = '',nombre,role,uid} = resp.usuario //ojo aqui
+        this.usuario = new Usuario( nombre, email, '', img, google, role, uid  )
+        this.usuario.imprimirUsuario();
+        localStorage.setItem('token', resp.token );
+        return true;
+      }),
+      map( resp => true),
+      catchError( error => of(false) )
+    );//Nota: hay que crear la instancia si se quiere tener acceso a los metodos y propiedades de alguna clase
   }
+ /**fin de esta funcion para esta clase 188 */
+
+
 
   crearUsuario(formData: RegisterForm){
     // console.log('creando usuario');
