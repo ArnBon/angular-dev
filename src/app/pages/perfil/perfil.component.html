@@ -6,25 +6,44 @@
       <div class="card-body">
         <h4 class="card-title">Sample Form with the Icons</h4>
         <h6 class="card-subtitle">made with bootstrap elements</h6>
-        <form class="form p-t-20">
+
+        <form class="form p-t-20"
+              [formGroup]="perfilForm"
+              (submit)="actualizarPerfil()">
+
+
+        <div class="form-group">
+          <label for="exampleInputuname">User Name</label>
+          <div class="input-group">
+            <div class="input-group-addon"><i class="ti-user"></i></div>
+            <input type="text"
+              class="form-control"
+              id="exampleInputuname"
+              placeholder="Nombre del usuario"
+              formControlName="nombre">
+          </div>
+        </div>
+
 
           <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
             <div class="input-group">
               <div class="input-group-addon"><i class="ti-email"></i></div>
-              <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="pwd1">Password</label>
-            <div class="input-group">
-              <div class="input-group-addon"><i class="ti-lock"></i></div>
-              <input type="password" class="form-control" id="pwd1" placeholder="Enter email">
+              <input type="email"
+                 class="form-control"
+                 id="exampleInputEmail1"
+                 placeholder="Enter email"
+                 formControlName="email">
             </div>
           </div>
 
 
-          <button type="submit" class="btn btn-success waves-effect waves-light m-r-10 btn-block">Guardar</button>
+
+          <button type="submit"
+           class="btn btn-success waves-effect waves-light m-r-10 btn-block"
+           [disabled]="perfilForm.invalid">
+
+           Guardar</button>
 
         </form>
       </div>

@@ -94,7 +94,7 @@ logout() {
   }*/
 
     /**clase 188 */
-     validarToken(): Observable<boolean> {//con esta validacion no entra si no esta autenticado
+    /* validarToken(): Observable<boolean> {//con esta validacion no entra si no esta autenticado
       const token = localStorage.getItem('token') || '';
     return this.http.get(`${ base_url }/login/renew`, {
       headers: {
@@ -112,9 +112,31 @@ logout() {
       map( resp => true),
       catchError( error => of(false) )
     );//Nota: hay que crear la instancia si se quiere tener acceso a los metodos y propiedades de alguna clase
-  }
+  }*/
  /**fin de esta funcion para esta clase 188 */
 
+ /*para la clase 190 la funcion valdarToken queda asi por lo del getToken */
+
+validarToken(): Observable<boolean> {//con esta validacion no entra si no esta autenticado
+      //se quito esto const token = localStorage.getItem('token') || '';
+    return this.http.get(`${ base_url }/login/renew`, {
+      headers: {
+        'x-token': this.token // y este se agrego el this.token
+      }
+    }).pipe(
+      map( (resp: any) => {
+        //console.log(resp);
+        const{email,google,img = '',nombre,role,uid} = resp.usuario //ojo aqui
+        this.usuario = new Usuario( nombre, email, '', img, google, role, uid  )
+        this.usuario.imprimirUsuario();
+        localStorage.setItem('token', resp.token );
+        return true;
+      }),
+      map( resp => true),
+      catchError( error => of(false) )
+    );
+  }
+ /**fin de esta funcion */
 
 
   crearUsuario(formData: RegisterForm){
@@ -156,9 +178,35 @@ logout() {
 
 
 
+/*clase 190
+funcion actualziarPerfil se debe recibir lad ata que se quiere actualizar
+entonces se le pasa por parametros
+*/
+
+
+
+actualizarPerfil(data: { email: string, nombre: string, role: string }){
+    data = {
+          ...data,
+          role: this.usuario.role
+        };
+        return this.http.put(`${ base_url }/usuarios/${ this.uid }`, data, {
+          headers: {
+            'x-token': this.token
+          }
+        });
+}
 
 
 
 
+/*Getter y Setter*/
+get token(): string {
+    return localStorage.getItem('token') || '';
+  }
+
+  get uid():string {
+    return this.usuario.uid || '';
+  }
 
 }
