@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Usuario } from 'src/app/models/usuario.model';
+import { FileUploadService } from 'src/app/services/file-upload.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import Swal from 'sweetalert2';
 
@@ -13,10 +14,11 @@ export class PerfilComponent implements OnInit {
 
   public perfilForm: FormGroup; // clase 190
   public usuario: Usuario; //clase 191
+  public imagenSubir: File; // clase 192
 
   constructor(private fb: FormBuilder,
-              private usuarioService: UsuarioService
-  ) {
+              private usuarioService: UsuarioService,
+              private fileUploadService: FileUploadService) {
     this.usuario = usuarioService.usuario; //clase 191
   }
 
@@ -57,7 +59,25 @@ actualizarPerfil(){
           Swal.fire('Error', err.error.msg, 'error');
         });
     }
+
+cambiarImagen( file: File ){
+  console.log(file);
+  this.imagenSubir = file;
+}
+
+
+subirImagen(){
+  this.fileUploadService
+    .actualizarFoto(this.imagenSubir, 'usuarios', this.usuario.uid)
+    .then(img => console.log(img) );
+}
+
+
   }
+
+
+
+
 /**fin clase 191 */
 
 
