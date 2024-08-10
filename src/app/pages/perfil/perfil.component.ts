@@ -55,9 +55,9 @@ export class PerfilComponent implements OnInit {
       this.usuario.nombre = nombre;
       this.usuario.email  = email;
 
-       Swal.fire('Actualizado', 'Cambios fueron actualizados', 'success');
+       Swal.fire('Actualizado', 'Cambios fueron actualizados', 'success'); //clase 194
         }, (err) => {
-          Swal.fire('Error', err.error.msg, 'error');
+          Swal.fire('Error', err.error.msg, 'error');//clase 194
         });
     }
 
@@ -82,8 +82,14 @@ cambiarImagen( file: File ){
 subirImagen(){
   this.fileUploadService
     .actualizarFoto(this.imagenSubir, 'usuarios', this.usuario.uid)
-    .then(img => this.usuario.img= img );
-}
+    .then(img => {
+      this.usuario.img= img;
+    Swal.fire('Guardado', 'Imagen de usuario actualizada', 'success');// clase 194
+      }).catch( err => {
+        console.log(err);
+        Swal.fire('Error', 'No se pudo subir la imagen', 'error');//clase 194
+      })
+    }
 
 
   }
