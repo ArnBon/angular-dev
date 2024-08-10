@@ -34,8 +34,14 @@ export class FileUploadService {
       });
 
       const data = await resp.json();
-      console.log(data);
-      return 'nombre de la imagen';
+      //clase 193
+      if (data.ok) {
+        return data.nombreArchivo;
+      } else {
+        console.log(data.msg);
+        return false;
+      }
+      // return 'nombre de la imagen';
 
   } catch (error) {
     console.log(error);
