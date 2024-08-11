@@ -9,6 +9,12 @@ export class Grafica1Component implements OnInit {
 
   constructor() { }
 
+public labels1: string[] = ['pan', 'tacos', 'Refresco'];
+public data1 = [
+  [10,15,40],
+]
+
+
   ngOnInit(): void {
   }
 
