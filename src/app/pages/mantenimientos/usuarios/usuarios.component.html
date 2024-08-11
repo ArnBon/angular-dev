@@ -1,5 +1,4 @@
 <!--clase 201-->
-<!--clase 201-->
 <div class="row animated fadeIn fast">
   <div class="col-12">
     <div class="card">
@@ -28,7 +27,7 @@
   <div class="col-12">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">Total de usuarios</h4>
+        <h4 class="card-title">Total de usuarios ({{ totalUsuarios }})</h4>
         <h6 class="card-subtitle">Usuarios registrados en mi aplicación</h6>
         <div class="table-responsive">
           <table class="table table-bordered">
@@ -43,18 +42,19 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr *ngFor="let usuario of usuarios">
                 <td class="text-center">
                   <img src="" alt="Avatar de usuario" class="avatar cursor">
                 </td>
-                <td></td>
-                <td></td>
+                <td>{{usuario.email}}</td>
+                <td>{{usuario.nombre}}</td>
 
                 <td>
-                  <select class="form-control">
+                  {{usuario.role}}
+                  <!-- <select class="form-control">
                     <option value="ADMIN_ROLE">Admin</option>
                     <option value="USER_ROLE">User</option>
-                  </select>
+                  </select> -->
                 </td>
 
                 <td>
@@ -66,6 +66,9 @@
                   <a data-toggle="tooltip" data-original-title="Borrar" class="cursor">
                     <i class="fa fa-close text-danger"></i>
                   </a>
+                   <a data-toggle="tooltip" data-original-title="Editar" class="cursor">
+                     <i class="fa fa-edit text-primary"></i>
+                   </a>
                 </td>
               </tr>
 
@@ -83,6 +86,4 @@
     </div>
   </div>
 </div>
-<!--fin clase 201-->
-
 <!--fin clase 201-->
