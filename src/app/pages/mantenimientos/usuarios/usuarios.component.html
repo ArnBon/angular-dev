@@ -43,9 +43,14 @@
             </thead>
             <tbody>
               <tr *ngFor="let usuario of usuarios">
+
                 <td class="text-center">
-                  <img src="" alt="Avatar de usuario" class="avatar cursor">
+                  <img [src]="usuario.imagenUrl"
+                  alt="Avatar de usuario"
+                  class="avatar cursor">
                 </td>
+
+
                 <td>{{usuario.email}}</td>
                 <td>{{usuario.nombre}}</td>
 
@@ -60,7 +65,7 @@
                 <td>
                   <span *ngIf="usuario.google" class="label label-danger">Google</span>
                   <span *ngIf="!usuario.google" class="label label-info">Email</span>
-        !        </td>
+                </td>
 
                 <td class="text-nowrap text-center">
                   <a data-toggle="tooltip" data-original-title="Borrar" class="cursor">

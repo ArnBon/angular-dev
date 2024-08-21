@@ -14,3 +14,16 @@
   height: 200px;
   width: 200px;
 }
+
+/* clase 204 */
+.w100{
+width: 100px;
+}
+.w140 {
+    width: 140px;
+}
+.avatar{
+  border-radius: 100%;
+  width: 30px;
+}
+/*fin clase 204*/

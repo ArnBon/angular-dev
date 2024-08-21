@@ -21,18 +21,27 @@ export class Usuario {
     } //esto borrarlo fue para fines demostrativos
 
     get imagenUrl(){
-      //http://localhost:3000/api/upload/usuarios/no-image
+      //http://localhost:3000/api/upload/usuarios/no-image sabes que esto viene del postman
 
-      if(this.img.includes('https')){
+      // if(this.img.includes('https')){
+      //   return this.img;
+      // }
+
+      // if (this.img) {
+      //   return `${ base_url }/upload/usuarios/${ this.img }`;
+      // } else {
+      //   return `${ base_url }/upload/usuarios/no-image`;
+      // } hasta aqui clase 203
+
+      // a partir de aqui clase 204
+      if (!this.img) {
+        return `${ base_url }/upload/usuarios/${ this.img }`
+      } else if (this.img.includes('https') ) {
         return this.img;
-      }
-
-      if (this.img) {
-        return `${ base_url }/upload/usuarios/${ this.img }`;
+      } else if (this.img) {
+        return `${ base_url }/upload/usuarios/${ this.img }`
       } else {
         return `${ base_url }/upload/usuarios/no-image`;
       }
     }
-
-
 }
