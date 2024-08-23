@@ -4,7 +4,11 @@
     <div class="card">
       <div class="card-body">
 
-        <input type="text" class="form-control" placeholder="Buscar usuario..." #txtTermino />
+        <input type="text"
+               class="form-control"
+               placeholder="Buscar usuario..." 
+               (keyup)="buscar( txtTermino.value )"
+               #txtTermino/>
 
       </div>
     </div>
