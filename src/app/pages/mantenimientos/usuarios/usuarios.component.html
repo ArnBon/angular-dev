@@ -6,7 +6,7 @@
 
         <input type="text"
                class="form-control"
-               placeholder="Buscar usuario..." 
+               placeholder="Buscar usuario..."
                (keyup)="buscar( txtTermino.value )"
                #txtTermino/>
 
@@ -88,7 +88,7 @@
           </table>
         </div>
 
-        <div>
+        <div *ngIf="txtTermino.value.length === 0"> <!--clase 207-->
           <button (click)="cambiarPagina(-10)" class="btn btn-secondary">Anteriores</button>
           &nbsp;
           <button (click)="cambiarPagina(10)" class="btn btn-secondary">Siguientes</button>
