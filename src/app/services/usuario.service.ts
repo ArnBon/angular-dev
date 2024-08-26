@@ -215,8 +215,11 @@ cargarUsuarios(desde: number = 0){
   )
 }
 
-
-
+// clase 208
+eliminarUsuarioService(usuario:Usuario){
+  const url = `${base_url}/usuarios/${usuario.uid}`;
+  return this.http.delete(url, this.headers);
+}
 
 
 
