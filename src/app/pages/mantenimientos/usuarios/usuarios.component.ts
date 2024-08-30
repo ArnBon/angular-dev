@@ -31,10 +31,6 @@ export class UsuariosComponent implements OnInit, OnDestroy {
   }
   ngOnInit(): void {
     this.cargarUsuarios();
-
-    this.imgSubs = this.modalImagenService.nuevaImagen
-     .pipe(delay(100))
-     .subscribe(img => this.cargarUsuarios())
   }
 
   //clase 203
@@ -122,7 +118,10 @@ cambiarRole(usuario:Usuario){
 
 }
 
-
+abrirModalUsuario(usuario:Usuario){
+  console.log(usuario);
+  this.modalImagenService.abrirModalService();
+}
 
 
 }
