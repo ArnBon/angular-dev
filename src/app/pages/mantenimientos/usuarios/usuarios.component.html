@@ -54,7 +54,8 @@
                 <td class="text-center">
                   <img [src]="usuario.imagenUrl"
                   alt="Avatar de usuario"
-                  class="avatar cursor">
+                  class="avatar cursor"
+                 >
                 </td>
 
 
@@ -63,10 +64,10 @@
 
                 <td>
                   {{usuario.role}}
-                  <!-- <select class="form-control">
+                  <select class="form-control" [(ngModel)]="usuario.role" (change)="cambiarRole( usuario )">
                     <option value="ADMIN_ROLE">Admin</option>
                     <option value="USER_ROLE">User</option>
-                  </select> -->
+                  </select>
                 </td>
 
                 <td>
@@ -79,9 +80,9 @@
                   (click)="eliminarUsuarioComponent(usuario)">
                     <i class="fa fa-close fa-2x text-danger"></i>
                   </a>
-                   <a data-toggle="tooltip" data-original-title="Editar" class="cursor">
+                   <!-- <a data-toggle="tooltip" data-original-title="Editar" class="cursor">
                      <i class="fa fa-edit fa-2x text-primary"></i>
-                   </a>
+                   </a> -->
                 </td>
               </tr>
 

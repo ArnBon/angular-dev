@@ -187,15 +187,11 @@ entonces se le pasa por parametros
 
 
 actualizarPerfil(data: { email: string, nombre: string, role: string }){
-    data = {
-          ...data,
-          role: this.usuario.role
-        };
-        return this.http.put(`${ base_url }/usuarios/${ this.uid }`, data, {
-          headers: {
-            'x-token': this.token
-          }
-        });
+   data = {
+      ...data,
+      role: this.usuario.role
+    }
+        return this.http.put(`${ base_url }/usuarios/${ this.uid }`, data, this.headers);
 }
 
 /*esta funcion de cargarusuarios se completo en la clase 204*/
@@ -221,6 +217,12 @@ eliminarUsuarioService(usuario:Usuario){
   return this.http.delete(url, this.headers);
 }
 
+//clase 210
+guardarUsuarioService(usuario: Usuario){
+  const url = `${ base_url }/usuarios/${ usuario.uid }`;
+  return this.http.delete(url, this.headers);
+
+}
 
 
 /*Getter y Setter*/
