@@ -120,7 +120,8 @@ cambiarRole(usuario:Usuario){
 
 abrirModalUsuario(usuario:Usuario){
   console.log(usuario);
-  this.modalImagenService.abrirModalService();
+  this.modalImagenService.abrirModalService('usuarios', usuario.uid, usuario.img);
+  //esos argumentos se pasaron en la clase 213
 }
 
 
