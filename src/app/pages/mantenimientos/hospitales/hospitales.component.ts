@@ -10,16 +10,25 @@ import { HospitalService } from 'src/app/services/hospital.service';
 export class HospitalesComponent implements OnInit {
 
   public hospitales:Hospital[] = [];
-
+  public cargando: boolean = true;
 
   constructor(private hs: HospitalService) { }
 
   ngOnInit(): void {
-    this.hs.cargarHospitalesService()
-    .subscribe( hospitales => {
+    this.cargarHospitalesComponent()
+  }
+
+  cargarHospitalesComponent(){
+    this.cargando = true;
+    this.hs.cargarHospitalesService() //aqui cargas lo del servicio o sea la funcion
+    .subscribe(hospitales => {
+      this.cargando = false;
+      this.hospitales = hospitales;
       console.log(hospitales);
     })
   }
+
+
 
 
 
