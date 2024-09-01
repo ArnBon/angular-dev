@@ -9,9 +9,11 @@ const base_url = environment.base_url;
 export class ModalImagenService {
 
   private _ocultarModalService: boolean = true;
-  public tipo: string;
+  public tipo: 'usuarios'|'medicos'|'hospitales';
   public id: string;
   public img: string;
+
+  public nuevaImagen: EventEmitter<string> = new EventEmitter<string>();
 
   get ocultarModalSer(){
     return this._ocultarModalService;
