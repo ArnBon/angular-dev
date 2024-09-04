@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { NoPageFoundComponent } from './no-page-found/no-page-found.component';
 import { AuthModule } from './auth/auth.module';
 import { ChartsModule } from 'ng2-charts';
+// import { ImagenPipe } from './pipes/imagen.pipe'; clase222
 
 
 
@@ -20,6 +21,7 @@ import { ChartsModule } from 'ng2-charts';
   declarations: [
     AppComponent,
     NoPageFoundComponent,
+    // ImagenPipe, clase 222
 
 
 

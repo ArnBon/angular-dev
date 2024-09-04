@@ -19,6 +19,7 @@ import { RxjsComponent } from './rxjs/rxjs.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
 import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.component';
+import { PipesModule } from "../pipes/pipes.module";
 
 
 
@@ -26,34 +27,33 @@ import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.comp
 
 
 @NgModule({
-  declarations: [
-    DashboardComponent,
-    ProgressComponent,
-    Grafica1Component,
-    PagesComponent,
-    AccountSettingsComponent,
-    PromesasComponent,
-    RxjsComponent,
-    PerfilComponent,
-    UsuariosComponent,
-    HospitalesComponent,
-
-
-  ],
-  exports: [
-    DashboardComponent,
-    ProgressComponent,
-    Grafica1Component,
-    PagesComponent,
-    AccountSettingsComponent,
-  ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    RouterModule,
-    FormsModule,
-    ComponentsModule,
-    ReactiveFormsModule
-  ]
+    declarations: [
+        DashboardComponent,
+        ProgressComponent,
+        Grafica1Component,
+        PagesComponent,
+        AccountSettingsComponent,
+        PromesasComponent,
+        RxjsComponent,
+        PerfilComponent,
+        UsuariosComponent,
+        HospitalesComponent,
+    ],
+    exports: [
+        DashboardComponent,
+        ProgressComponent,
+        Grafica1Component,
+        PagesComponent,
+        AccountSettingsComponent,
+    ],
+    imports: [
+        CommonModule,
+        SharedModule,
+        RouterModule,
+        FormsModule,
+        ComponentsModule,
+        ReactiveFormsModule,
+        PipesModule
+    ]
 })
 export class PagesModule { }

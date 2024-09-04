@@ -63,7 +63,8 @@
               <tr *ngFor="let hospital of hospitales">
 
                 <td class="text-center">
-                  <img src="">
+                  <img [src]="hospital.img | imagen:'hospitales'" [alt]="hospital.nombre" class="avatar cursor"
+                    >
                 </td>
 
                 <td>
@@ -85,7 +86,7 @@
 
 
 
-                
+
               </tr>
 
             </tbody>
@@ -94,11 +95,11 @@
 
         </div>
 
-        <!-- <div>
+        <div>
           <button class="btn btn-secondary">Anteriores</button>
           &nbsp;
           <button class="btn btn-secondary">Siguientes</button>
-        </div> -->
+        </div>
 
       </div>
     </div>
