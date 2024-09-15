@@ -20,6 +20,10 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
 import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.component';
 import { PipesModule } from "../pipes/pipes.module";
+import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
+import { MedicoComponent } from './mantenimientos/medicos/medico.component';
+import { PacientesComponent } from './mantenimientos/pacientes/pacientes.component';
+
 
 
 
@@ -38,6 +42,11 @@ import { PipesModule } from "../pipes/pipes.module";
         PerfilComponent,
         UsuariosComponent,
         HospitalesComponent,
+        MedicosComponent,
+        MedicoComponent,
+        PacientesComponent,
+
+
     ],
     exports: [
         DashboardComponent,
