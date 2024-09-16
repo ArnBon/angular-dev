@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
   templateUrl: './hospitales.component.html',
   styleUrls: ['./hospitales.component.css']
 })
-export class HospitalesComponent implements OnInit {
+export class HospitalesComponent implements OnInit, OnDestroy {
 
   public hospitales:Hospital[] = [];
   public cargando: boolean = true;
@@ -22,6 +22,9 @@ export class HospitalesComponent implements OnInit {
               private mis: ModalImagenService,
               private bs: BusquedasService //clase 225
   ) { }
+  ngOnDestroy(): void {
+    this.imgSubs.unsubscribe()
+  }
 
   ngOnInit(): void {
     this.cargarHospitalesComponent();

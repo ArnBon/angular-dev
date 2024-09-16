@@ -3,7 +3,11 @@
     <div class="card">
       <div class="card-body">
 
-        <input type="text" class="form-control" placeholder="Buscar médico..." #txtTermino />
+        <input type="text"
+         class="form-control"
+         placeholder="Buscar médico..."
+         #txtTermino
+         (keyup)="buscarComponent( txtTermino.value )" />
 
       </div>
     </div>
@@ -31,7 +35,7 @@
 
         <div class="row">
           <div class="col-8">
-            <h4 class="card-title">Médicos </h4>
+            <h4 class="card-title">Médicos ({{ medicos.length }})</h4>
             <h6 class="card-subtitle">
               Listado de Medicos registrados
             </h6>
@@ -39,10 +43,10 @@
 
           <div class="col">
             <div class="text-right">
-              <a class="btn btn-primary">
-                <i class="fa fa-hospital-o"></i>
-                Crear médico
-              </a>
+               <a class="btn btn-primary" routerLink="/dashboard/medico/nuevo">
+                 <i class="fa fa-hospital-o"></i>
+                 Crear médico
+               </a>
             </div>
           </div>
 
